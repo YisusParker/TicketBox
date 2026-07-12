@@ -1,0 +1,56 @@
+# Inicia y conecta los servicios de la aplicación
+services:
+  app:
+    # Construir la imagen de la aplicación
+    build: .
+    # El contenedor de la aplicación debe estar expuesto en el puerto 8000
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      # El contenedor de la base de datos debe estar saludable para que el contenedor de la aplicación pueda acceder a ella
+      db:
+        condition: service_healthy
+      # El contenedor de Redis debe estar iniciado para que el contenedor de la aplicación pueda acceder a él
+      redis:
+        condition: service_started
+    volumes:
+        # Volumen para que el contenedor pueda acceder a los archivos de la aplicación
+      - .:/app
+    # Comando para iniciar la aplicación
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    
+  db:
+  # Alpine es una imagen muy ligera de PostgreSQL
+    image: postgres:16-alpine
+    # Variables de entorno para la base de datos
+    environment:
+      POSTGRES_USER: ticketbox
+      POSTGRES_PASSWORD: ticketbox
+      POSTGRES_DB: ticketbox
+    # El contenedor de la base de datos debe estar expuesto en el puerto 5432 que es el puerto por defecto de PostgreSQL
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      # Comando para verificar si la base de datos está saludable
+      test: ["CMD-SHELL", "pg_isready -U ticketbox"]
+      # Intervalo para verificar si la base de datos está saludable
+      interval: 5s
+      # Tiempo de timeout para verificar si la base de datos está saludable
+      timeout: 5s
+      # Número de intentos para verificar si la base de datos está saludable
+      retries: 5
+
+  redis:
+    # Alpine es una imagen muy ligera de Redis
+    image: redis:7-alpine
+    ports:
+      # El contenedor de Redis debe estar expuesto en el puerto 6379 que es el puerto por defecto de Redis
+      - "6379:6379"
+
+volumes:
+  # Volumen para que el contenedor pueda acceder a los datos de la base de datos
+  pgdata:
