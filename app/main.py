@@ -1,14 +1,10 @@
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
 
 app = FastAPI(title="Reviewass API", version="0.1.0")
-
 
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
-
-
 
 @app.get("/")
 def read_root():
