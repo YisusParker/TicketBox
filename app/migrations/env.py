@@ -8,10 +8,8 @@ from alembic import context
 
 from app.config import settings
 from app.database import Base
-# importa todos los modelos aquí
-from app.models import User
-from app.models import Ticket
-from app.models import Event
+# importa todos los modelos aquí (agrega tus propios modelos a medida que los crees)
+import app.models  # noqa: F401
 
 
 # this is the Alembic Config object, which provides

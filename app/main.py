@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
-app = FastAPI(title="TicketBox API", version="0.1.0")
+app = FastAPI(title="Reviewass API", version="0.1.0")
 
 
 @app.get("/health")
@@ -12,11 +12,11 @@ html_template = """
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TicketBox API</title>
+        <title>Reviewass API</title>
     </head>
     <body>
-        <h1>TicketBox API</h1>
-        <p>Welcome to the TicketBox API</p>
+        <h1>Reviewass API</h1>
+        <p>Welcome to the Reviewass API</p>
         <p>This is the root endpoint of the API</p>
         <p>Use the following endpoints to interact with the API:</p>
         <ul>

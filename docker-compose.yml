@@ -26,9 +26,9 @@ services:
     image: postgres:16-alpine
     # Variables de entorno para la base de datos
     environment:
-      POSTGRES_USER: ticketbox
-      POSTGRES_PASSWORD: ticketbox
-      POSTGRES_DB: ticketbox
+      POSTGRES_USER: reviewass
+      POSTGRES_PASSWORD: reviewass
+      POSTGRES_DB: reviewass
     # El contenedor de la base de datos debe estar expuesto en el puerto 5432 que es el puerto por defecto de PostgreSQL
     ports:
       - "5432:5432"
@@ -36,7 +36,7 @@ services:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
       # Comando para verificar si la base de datos está saludable
-      test: ["CMD-SHELL", "pg_isready -U ticketbox"]
+      test: ["CMD-SHELL", "pg_isready -U reviewass"]
       # Intervalo para verificar si la base de datos está saludable
       interval: 5s
       # Tiempo de timeout para verificar si la base de datos está saludable
