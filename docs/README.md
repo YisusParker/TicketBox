@@ -22,6 +22,8 @@ Build a REST API where users can search for movies (via the TMDB API), write rev
 
 ## 3. Functional Requirements
 
+> Stuck on a requirement below? `docs/fr-guide.md` breaks down the concepts and search terms behind each one — no code, just what to go learn.
+
 ### FR-1: Users & Authentication
 - Register (email + password, hashed with bcrypt).
 - Login returning a JWT (access token only is fine at this level).
