@@ -16,7 +16,7 @@ Build a REST API where users can search for movies (via the TMDB API), write rev
 3. **Cache:** Redis only, and it must be used for at least the use cases listed in §6.
 4. All infrastructure must run locally via **docker-compose** (app + Postgres + Redis) — already scaffolded for you.
 5. **Migrations are mandatory** (Alembic). No `CREATE TABLE` by hand in psql.
-6. **Never store the TMDB API key client-side or return it in any response.** All TMDB calls happen server-to-server; your API is the only thing that talks to TMDB.
+
 
 ---
 
@@ -82,23 +82,3 @@ Referential integrity enforced with real foreign keys. Explain your indexing cho
 3. **Login rate limiting:** max 5 failed logins per email per 15 minutes, tracked in Redis.
 
 ---
-
-## 7. Deliverables Checklist
-
-- [ ] Git repository with meaningful commit history (no single "final commit").
-- [ ] `docker-compose.yml` (app, Postgres, Redis) — already provided, don't need to touch it.
-- [ ] Migrations folder — you'll generate your first migration once your models exist.
-- [ ] `/docs/erd.md` (ERD diagram) and `/docs/architecture.md` (module layout + request flow for: search → review creation → rating aggregation, as a sequence diagram).
-- [ ] OpenAPI/Swagger available at `/docs` endpoint (FastAPI gives this nearly free).
-- [ ] Test suite runnable with a single command.
-- [ ] Postman/Insomnia collection or `.http` file to exercise the full happy path.
-- [ ] README: setup, design decisions, known limitations.
-
-### Rubric (100 pts)
-- Correctness of requirements — 30
-- Data modeling & migrations — 15
-- Authorization correctness (ownership + roles, no leaking others' write access) — 15
-- Code organization & readability — 15
-- Tests — 10
-- Redis usage & justification — 10
-- Docs & diagrams — 5
